@@ -1,8 +1,7 @@
-baseURL = 'https://moonhack.2148.cloud/'
+baseURL = 'https://moonhack.1stkingslangleyscouts.com.au/'
 languageCode = 'en-us'
 title = 'Moonhack 2025'
 theme = 'hyde'
 
 [params]
-  layoutReverse = true
-
+layoutReverse = true
