@@ -14,3 +14,7 @@ main = [
     { Name = "1st Kings Langley Scouts", URL = "https://1stkingslangleyscouts.com.au" },
     { Name = "Moonhack 2025", URL = "https://moonhack.com" },
 ]
+
+[caches]
+[caches.images]
+dir = ':cacheDir/images'
