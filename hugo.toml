@@ -6,7 +6,7 @@ theme = 'hyde'
 [params]
 description = " "
 author = "1st Kings Langley Scouts"
-themeColor = "theme-base-0e"
+themeColor = "theme-base-0d"
 layoutReverse = true
 
 [Menus]
