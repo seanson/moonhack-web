@@ -1,0 +1,46 @@
+/*
+ * Scouts NSW brand theme for Hyde.
+ *
+ * Palette from the Scouts Australia Brand Book (June 2025), NSW branch:
+ *   NSW Cyan        #44c8f5  (primary)
+ *   NSW Blue        #009cd3
+ *   NSW Teal        #00b5cc
+ *   NSW Medium Blue #006b9e
+ *   NSW Light Cyan  #8ed8f8
+ *   Australian Navy Blue #28265c  (base / uniform)
+ *   Dark Grey       #575756       (base typography)
+ *
+ * Activated by `themeColor = "theme-nsw"` in hugo.toml, which sets the body
+ * class. This file is auto-appended to the CSS bundle by head_css.html, so its
+ * rules load after the theme's and win the cascade.
+ */
+
+/* Sidebar: NSW Medium Blue graduating into Australian Navy Blue. White text
+ * keeps AA contrast against both ends of the gradient. */
+.theme-nsw .sidebar {
+  background-color: #006b9e;
+  background-image: linear-gradient(165deg, #006b9e 0%, #28265c 100%);
+}
+
+/* Lead / description text: lift from the theme default (.5 alpha) for
+ * readability on the blue sidebar. */
+.theme-nsw .sidebar .lead {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Site title and nav links stay white, then pop to NSW Cyan on interaction. */
+.theme-nsw .sidebar a:hover,
+.theme-nsw .sidebar a:focus {
+  color: #44c8f5;
+}
+
+/* In-content links: NSW Medium Blue for AA contrast on the white content area,
+ * brightening to NSW Blue on hover/focus. */
+.theme-nsw .content a,
+.theme-nsw .related-posts li a:hover {
+  color: #006b9e;
+}
+.theme-nsw .content a:hover,
+.theme-nsw .content a:focus {
+  color: #009cd3;
+}
