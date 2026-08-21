@@ -1,9 +1,8 @@
 +++
 date = '2025-10-18T08:03:47+11:00'
-title = 'MoonHack 2025 Resources'
+title = 'Moonhack 2025 Resources'
+description = "Starter projects and resources from 1st Kings Langley Scouts Moonhack 2025."
 +++
-
-# moonhack.1stkingslangleyscouts.com.au
 
 ## Links to starter projects
 
@@ -19,4 +18,4 @@ title = 'MoonHack 2025 Resources'
 
 ## Other Links
 
-- Code Club Australia Scratch Account[https://scratch.mit.edu/users/codeclubaustralia/](https://scratch.mit.edu/users/codeclubaustralia/)
+- Code Club Australia Scratch Account - [https://scratch.mit.edu/users/codeclubaustralia/](https://scratch.mit.edu/users/codeclubaustralia/)

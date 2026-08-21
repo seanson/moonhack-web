@@ -1,0 +1,19 @@
+[[main]]
+  name = "Home"
+  pageRef = "/"
+  weight = 10
+
+[[main]]
+  name = "Past Years"
+  pageRef = "posts"
+  weight = 20
+
+[[main]]
+  name = "1st Kings Langley Scouts"
+  url = "https://1stkingslangleyscouts.com.au"
+  weight = 30
+
+[[main]]
+  name = "Moonhack"
+  url = "https://moonhack.com"
+  weight = 40

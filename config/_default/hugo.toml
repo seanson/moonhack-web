@@ -1,0 +1,24 @@
+baseURL = "https://moonhack.1stkingslangleyscouts.com.au/"
+theme = "blowfish"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+summaryLength = 0
+enableEmoji = true
+
+buildDrafts = false
+buildFuture = false
+
+[pagination]
+  pagerSize = 100
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5

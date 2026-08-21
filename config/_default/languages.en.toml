@@ -1,0 +1,19 @@
+disabled = false
+locale = "en-AU"
+label = "English"
+weight = 1
+title = "1st Kings Langley Moonhack 2026"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  description = "Starter projects and resources for 1st Kings Langley Scouts taking part in Moonhack."
+  copyright = "1st Kings Langley Scouts"
+
+  [params.author]
+    name = "1st Kings Langley Scouts"
+    links = [
+      { link = "https://1stkingslangleyscouts.com.au" },
+    ]
