@@ -51,17 +51,26 @@ Every 2026 project teaches something about staying safe online: spotting a phish
 ## How the day runs
 
 {{< steps >}}
-{{< step number="1" title="10am: sign in and set up" >}}
+{{< step number="1" title="10am (30m): sign in and set up" >}}
 Arrive at the hall, find a spot and get your laptop on the wifi.
 {{< /step >}}
-{{< step number="2" title="Pick a project" >}}
-Seven to choose from, all listed below. New to this? Start with Scratch. The instructions come in a pile of other languages too, which helps if you'd rather read them at home first.
+{{< step number="2" title="10:30am (1h): follow along on the projector" >}}
+We build one Scratch project together, step by step on the big screen. Everyone codes along at the same point, and questions get answered as a group so nobody is left behind.
 {{< /step >}}
-{{< step number="3" title="Build it, then change it" >}}
-Work through the instructions at your own pace, then make it yours: new sprites, extra levels, a harder version your mate can't finish, a completely different theme. Judges reward projects that go past the original.
+{{< step number="3" title="11:30am (30m): lunch" >}}
+Break to eat. Bring your own, nut free please.
 {{< /step >}}
-{{< step number="4" title="3pm: show and tell" >}}
-Demo what you made, then pack up and head home.
+{{< step number="4" title="12pm (1h30m): buddy up and pick your own" >}}
+Pair up and choose a second project from the seven below, then make it yours: new sprites, extra levels, a harder version your mate can't finish. Judges reward projects that go past the original.
+{{< /step >}}
+{{< step number="5" title="1:30pm (15m): afternoon tea" >}}
+Second break and a snack, then back for the last stretch.
+{{< /step >}}
+{{< step number="6" title="1:45pm (1h): keep building" >}}
+More time on the buddy project, with help on hand if something will not budge.
+{{< /step >}}
+{{< step number="7" title="2:45pm (15m): parent arrival and demos" >}}
+Parents arrive at 2:45pm to see what everyone made. We pack up and leave at 3pm.
 {{< /step >}}
 {{< /steps >}}
 
