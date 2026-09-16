@@ -1,0 +1,137 @@
+{{/*
+  Moonhack landing hero. Overrides the theme's landing layout to use the
+  official Moonhack 2026 comms pack art (moon landscape, buggy, shield
+  mascot, sparkle stars) with a live countdown. Reads heroCaption, heroLead,
+  heroFacts, heroButtons, eventStart and eventEnd from the home page front
+  matter.
+*/}}
+{{ $alg := site.Params.fingerprintAlgorithm | default "sha512" }}
+{{ $start := "" }}
+{{ with .Params.eventStart }}{{ $start = time . }}{{ end }}
+{{ $end := $start }}
+{{ with .Params.eventEnd }}{{ $end = time . }}{{ end }}
+{{ $daysToGo := 0 }}
+{{ if and $start (gt $start.Unix now.Unix) }}
+  {{ $daysToGo = int (math.Floor (div (float (sub $start.Unix now.Unix)) 86400)) }}
+{{ end }}
+{{ $liveMessage := .Params.heroLiveMessage | default "Moonhack is happening right now" }}
+{{ $doneMessage := .Params.heroDoneMessage | default "That's a wrap — resources are below" }}
+
+{{ $stars := slice
+  (dict "file" "star-white.svg" "top" "9%" "left" "7%" "size" "1.5rem" "delay" "0s")
+  (dict "file" "star-lavender.svg" "top" "22%" "left" "16%" "size" "1rem" "delay" "1.4s")
+  (dict "file" "star-deep-pink.svg" "top" "6%" "left" "31%" "size" "0.85rem" "delay" "2.6s")
+  (dict "file" "star-moon-blue.svg" "top" "31%" "left" "4%" "size" "0.75rem" "delay" "3.4s")
+  (dict "file" "star-peachy-pink.svg" "top" "13%" "left" "69%" "size" "1.15rem" "delay" "0.7s")
+  (dict "file" "star-white.svg" "top" "5%" "left" "88%" "size" "1.35rem" "delay" "2s")
+  (dict "file" "star-lavender-2.svg" "top" "27%" "left" "93%" "size" "0.9rem" "delay" "3s")
+  (dict "file" "star-moon-blue.svg" "top" "40%" "left" "78%" "size" "0.7rem" "delay" "1.1s")
+}}
+
+<article class="mh-hero">
+  <div class="mh-hero__stars" aria-hidden="true"></div>
+  <div class="mh-hero__glow" aria-hidden="true"></div>
+
+  <div class="mh-sparkles" aria-hidden="true">
+    {{ range $star := $stars }}
+      {{ with resources.Get (printf "img/stars/%s" $star.file) }}
+        <img
+          class="mh-star"
+          src="{{ .RelPermalink }}"
+          alt=""
+          width="25"
+          height="25"
+          loading="eager"
+          style="{{ printf "top:%s;left:%s;width:%s;animation-delay:%s" $star.top $star.left $star.size $star.delay | safeCSS }}" />
+      {{ end }}
+    {{ end }}
+  </div>
+
+  <div class="mh-hero__inner">
+    {{ with .Params.heroCaption }}
+      <p class="mh-eyebrow landing-rise">{{ . | markdownify }}</p>
+    {{ end }}
+
+    {{ with .Title }}
+      <h1 class="mh-title landing-rise landing-rise-1">{{ . | emojify }}</h1>
+    {{ end }}
+
+    {{ with .Params.heroLead }}
+      <p class="mh-lead landing-rise landing-rise-2">{{ . | markdownify }}</p>
+    {{ end }}
+
+    {{ with .Params.heroFacts }}
+      <ul class="mh-facts landing-rise landing-rise-2">
+        {{ range . }}
+          <li>{{ partial "icon.html" .icon }}{{ .label | markdownify }}</li>
+        {{ end }}
+      </ul>
+    {{ end }}
+
+    {{ with $start }}
+      <div
+        class="landing-rise landing-rise-3"
+        data-mh-countdown
+        data-start="{{ .Format "2006-01-02T15:04:05Z07:00" }}"
+        data-end="{{ $end.Format "2006-01-02T15:04:05Z07:00" }}"
+        data-live="{{ $liveMessage }}"
+        data-done="{{ $doneMessage }}">
+        <ul class="mh-countdown">
+          <li><b data-mh-unit="days">{{ $daysToGo }}</b><small>days</small></li>
+          <li><b data-mh-unit="hours">00</b><small>hours</small></li>
+          <li><b data-mh-unit="minutes">00</b><small>mins</small></li>
+          <li><b data-mh-unit="seconds">00</b><small>secs</small></li>
+        </ul>
+        <p class="mh-countdown__message" hidden></p>
+      </div>
+    {{ end }}
+
+    {{ with .Params.heroButtons }}
+      <div class="mh-actions landing-rise landing-rise-4">
+        {{ range . }}
+          {{ partial "cta-button.html" (dict "url" .url "label" .label "style" .style) }}
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+
+  {{ with resources.Get "img/moon-landscape.png" }}
+    <div
+      class="mh-landscape"
+      aria-hidden="true"
+      style="{{ printf "background-image:url('%s')" .RelPermalink | safeCSS }}">
+      {{ with resources.Get "img/shield-guy.png" }}
+        <img class="mh-mascot mh-mascot--shield" src="{{ .RelPermalink }}" alt="" />
+      {{ end }}
+      {{ with resources.Get "img/buggy.svg" }}
+        <img class="mh-mascot mh-mascot--buggy" src="{{ .RelPermalink }}" alt="" />
+      {{ end }}
+    </div>
+  {{ end }}
+</article>
+
+<div class="mh-presented">
+  {{ with resources.Get "img/moonhack-logo.png" }}
+    <a href="https://moonhack.com" rel="noopener">
+      <img class="mh-presented__logo" src="{{ .RelPermalink }}" alt="Moonhack 2026" />
+    </a>
+  {{ end }}
+  <p>
+    Moonhack is Code Club Australia's global coding challenge. The 2026 challenge
+    runs <strong>14&ndash;31 October</strong> &mdash; our club day is one of those
+    days.
+  </p>
+</div>
+
+<section class="mh-body prose prose-lg mx-auto max-w-4xl dark:prose-invert">
+  {{ .Content }}
+</section>
+
+{{ with resources.Get "js/moonhack-countdown.js" }}
+  {{ $js := . | resources.Minify | resources.Fingerprint $alg }}
+  <script
+    type="text/javascript"
+    defer
+    src="{{ $js.RelPermalink }}"
+    integrity="{{ $js.Data.Integrity }}"></script>
+{{ end }}

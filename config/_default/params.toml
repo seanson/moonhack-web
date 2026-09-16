@@ -18,8 +18,8 @@ fingerprintAlgorithm = "sha512"
   showScrollToTop = true
 
 [homepage]
-  layout = "page" # valid options: page, profile, hero, card, background, landing, custom
-  showRecent = true
+  layout = "landing" # valid options: page, profile, hero, card, background, landing, custom
+  showRecent = false
   showRecentItems = 5
   showMoreLink = true
   showMoreLinkDest = "/posts/"

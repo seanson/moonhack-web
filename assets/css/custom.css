@@ -1,0 +1,339 @@
+/*
+ * Moonhack landing page styles.
+ *
+ * Appended after the theme's compiled Tailwind bundle, so these rules use
+ * their own `mh-` class names rather than Tailwind utilities (the theme
+ * ships a pre-built stylesheet and will not generate new utility classes).
+ *
+ * Colours are the official Moonhack 2026 palette from the comms pack:
+ *   not black #131A35, deep purple #391486, warm purple #7806CA,
+ *   deep pink #F4167A, earth blue #286CFF, lavender #B2ACFF, taro #F5DDFC.
+ */
+
+.mh-hero {
+  --mh-ink: #f7f2ff;
+  --mh-ink-dim: #c6bdf0;
+  --mh-accent: #b2acff;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 1.75rem;
+  padding: 3.5rem 1.25rem 0;
+  color: var(--mh-ink);
+  text-align: center;
+  background: linear-gradient(180deg, #131a35 0%, #24135a 45%, #391486 100%);
+  box-shadow: 0 25px 60px -25px rgb(19 26 53 / 65%);
+}
+
+@media (min-width: 640px) {
+  .mh-hero {
+    padding: 5rem 2.5rem 0;
+  }
+}
+
+/* Faint dust layer behind the official sparkle stars. */
+.mh-hero__stars {
+  position: absolute;
+  inset: -20% -10%;
+  z-index: -2;
+  background-repeat: repeat;
+  background-size: 260px 260px;
+  background-image:
+    radial-gradient(1.3px 1.3px at 30px 40px, rgb(255 255 255 / 70%) 50%, transparent 51%),
+    radial-gradient(1px 1px at 140px 90px, rgb(178 172 255 / 65%) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 90px 190px, rgb(255 255 255 / 55%) 50%, transparent 51%),
+    radial-gradient(1px 1px at 220px 160px, rgb(40 108 255 / 65%) 50%, transparent 51%),
+    radial-gradient(1.1px 1.1px at 190px 30px, rgb(255 141 141 / 55%) 50%, transparent 51%);
+  animation: mh-drift 240s linear infinite;
+}
+
+.mh-hero__glow {
+  position: absolute;
+  top: -38%;
+  left: 50%;
+  z-index: -1;
+  width: 46rem;
+  height: 46rem;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(120 6 202 / 45%) 0%, transparent 62%);
+  pointer-events: none;
+}
+
+.mh-sparkles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.mh-star {
+  position: absolute;
+  height: auto;
+  animation: mh-twinkle 5s ease-in-out infinite;
+}
+
+.mh-hero__inner {
+  position: relative;
+  margin: 0 auto;
+  max-width: 46rem;
+}
+
+.mh-eyebrow {
+  margin: 0 0 1.1rem;
+  color: var(--mh-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.mh-title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.9rem, 11vw, 5.25rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.mh-lead {
+  margin: 1.35rem auto 0;
+  max-width: 36rem;
+  color: var(--mh-ink-dim);
+  font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.mh-lead strong {
+  color: #fff;
+}
+
+.mh-facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mh-facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 8%);
+  padding: 0.4rem 0.9rem;
+  color: var(--mh-ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+}
+
+.mh-countdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 2.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mh-countdown li {
+  min-width: 4.6rem;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 7%);
+  padding: 0.7rem 0.6rem 0.6rem;
+  backdrop-filter: blur(6px);
+}
+
+.mh-countdown b {
+  display: block;
+  color: #fff;
+  font-size: 1.85rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.mh-countdown small {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--mh-ink-dim);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.mh-countdown__message {
+  margin: 2.25rem 0 0;
+  color: #ff8d8d;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.mh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+}
+
+/* Official moon landscape, with the buggy and shield mascot on it. */
+/*
+ * The artwork is 4320x1140 with a flat purple base, so the band shows only
+ * the top 54% of it (aspect 4320/620) and crops the rest. Keeping both the
+ * band height and the mascot offsets proportional to the hero width means
+ * the mascots stay on the ridge line at every viewport size.
+ */
+.mh-landscape {
+  position: relative;
+  /* Room above the ridge for the mascots, which stand taller than the band. */
+  margin: 4.5rem -1.25rem 0;
+  aspect-ratio: 4320 / 620;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+@media (min-width: 640px) {
+  .mh-landscape {
+    margin: 3rem -2.5rem 0;
+  }
+}
+
+.mh-mascot {
+  position: absolute;
+  height: auto;
+}
+
+.mh-mascot--buggy {
+  left: 64%;
+  bottom: 70%;
+  width: 4.25rem;
+  filter: drop-shadow(0 12px 18px rgb(19 26 53 / 35%));
+  animation: mh-bob 5.5s ease-in-out infinite;
+}
+
+.mh-mascot--shield {
+  left: 5%;
+  bottom: 66%;
+  width: 2.75rem;
+  filter: drop-shadow(0 12px 18px rgb(19 26 53 / 30%));
+  animation: mh-bob 7s ease-in-out infinite 1.5s;
+}
+
+@media (min-width: 640px) {
+  .mh-mascot--buggy {
+    width: 9rem;
+  }
+
+  .mh-mascot--shield {
+    width: 6rem;
+  }
+}
+
+/* Official wordmark strip between the hero and the page body. */
+.mh-presented {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 2rem;
+  margin: 2.5rem auto 0;
+  max-width: 56rem;
+  text-align: center;
+}
+
+.mh-presented__logo {
+  width: 15rem;
+  max-width: 60vw;
+  height: auto;
+}
+
+.mh-presented p {
+  margin: 0;
+  max-width: 26rem;
+  color: rgb(var(--color-neutral-600));
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: start;
+}
+
+.mh-presented strong {
+  color: rgb(var(--color-neutral-800));
+}
+
+.dark .mh-presented p {
+  color: rgb(var(--color-neutral-300));
+}
+
+.dark .mh-presented strong {
+  color: rgb(var(--color-neutral-100));
+}
+
+/* The wordmark is dark navy artwork, so lift it on dark backgrounds. */
+.dark .mh-presented__logo {
+  filter: drop-shadow(0 0 0.4rem rgb(245 221 252 / 90%))
+    drop-shadow(0 0 1.2rem rgb(245 221 252 / 70%));
+}
+
+@keyframes mh-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+}
+
+@keyframes mh-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-260px, 130px, 0);
+  }
+}
+
+@keyframes mh-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-hero__stars,
+  .mh-star,
+  .mh-mascot {
+    animation: none;
+  }
+}
+
+/* Body sections below the hero -------------------------------------- */
+
+.mh-body {
+  margin: 0 auto;
+  padding: 3rem 0 1rem;
+}
+
+.mh-body h2 {
+  scroll-margin-top: 6rem;
+}
