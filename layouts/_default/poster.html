@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode | default "en" }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{{ .Title }}</title>
+    {{/*
+      Standalone A4 sheet for printing. No site chrome, no theme CSS: the
+      stylesheet below is the whole page, sized in mm so print output matches
+      what the browser shows.
+    */}}
+    <style>
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: #131a35;
+        background: #e9eaf0;
+      }
+
+      .hint {
+        padding: 6mm;
+        text-align: center;
+        font-size: 3.4mm;
+        color: #46506e;
+      }
+
+      .sheet {
+        position: relative;
+        margin: 0 auto;
+        width: 210mm;
+        height: 297mm;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4mm 12mm rgb(19 26 53 / 25%);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      /* Night sky ------------------------------------------------------ */
+
+      .sky {
+        position: relative;
+        /* flex-none, or a long details panel shrinks the sky and the landscape
+           climbs over the tagline. */
+        flex: none;
+        height: 138mm;
+        padding: 14mm 14mm 0;
+        color: #fff;
+        text-align: center;
+        background: linear-gradient(180deg, #131a35 0%, #24135a 48%, #391486 100%);
+      }
+
+      .sky__star {
+        position: absolute;
+        height: auto;
+      }
+
+      .eyebrow {
+        margin: 0;
+        font-size: 4mm;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #b2acff;
+      }
+
+      .title {
+        margin: 6mm 0 0;
+        font-size: 21mm;
+        font-weight: 900;
+        line-height: 0.92;
+        letter-spacing: -0.02em;
+      }
+
+      .tagline {
+        margin: 7mm auto 0;
+        max-width: 140mm;
+        font-size: 6mm;
+        font-weight: 600;
+        line-height: 1.35;
+        color: #ded8ff;
+      }
+
+      /* Moon landscape sits across the seam between the two panels. */
+      .landscape {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        aspect-ratio: 4320 / 620;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+      }
+
+      .mascot {
+        position: absolute;
+        height: auto;
+      }
+
+      .mascot--buggy {
+        left: 64%;
+        bottom: 66%;
+        width: 26mm;
+      }
+
+      .mascot--shield {
+        left: 6%;
+        bottom: 64%;
+        width: 17mm;
+      }
+
+      /* Details ------------------------------------------------------- */
+
+      .details {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 10mm 14mm 8mm;
+      }
+
+      .when {
+        margin: 0;
+        font-size: 12mm;
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -0.01em;
+      }
+
+      .time {
+        margin: 2mm 0 0;
+        font-size: 9mm;
+        font-weight: 800;
+        color: #7806ca;
+      }
+
+      .where {
+        margin: 5mm 0 0;
+        font-size: 6mm;
+        font-weight: 700;
+      }
+
+      .meta {
+        margin: 2mm 0 0;
+        font-size: 5mm;
+        font-weight: 600;
+        color: #46506e;
+      }
+
+      .blurb {
+        margin-top: 8mm;
+        max-width: 160mm;
+        font-size: 5mm;
+        line-height: 1.75;
+        color: #2b3350;
+      }
+
+      /* Hanging indent so a wrapped line sits under the value, not the label. */
+      .blurb p {
+        margin: 0;
+        padding-inline-start: 20mm;
+        text-indent: -20mm;
+      }
+
+      .blurb strong {
+        color: #7806ca;
+      }
+
+      .notice {
+        margin: 5mm 0 0;
+        border-radius: 2mm;
+        background: #f5ddfc;
+        padding: 3.5mm 5mm;
+        font-size: 5.2mm;
+        font-weight: 800;
+        color: #391486;
+      }
+
+      .qr {
+        display: flex;
+        align-items: center;
+        gap: 6mm;
+        margin-top: auto;
+        border-top: 0.6mm solid #d9dbe6;
+        padding-top: 6mm;
+      }
+
+      .qr__code,
+      .qr__slot {
+        flex: none;
+        width: 32mm;
+        height: 32mm;
+      }
+
+      .qr__slot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0.8mm dashed #a3acbd;
+        border-radius: 2mm;
+        font-size: 3.6mm;
+        font-weight: 700;
+        color: #7e8ba3;
+        text-align: center;
+      }
+
+      .qr__caption {
+        margin: 0;
+        font-size: 5mm;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      .qr__url {
+        margin: 2mm 0 0;
+        font-size: 4mm;
+        font-weight: 600;
+        color: #7806ca;
+        word-break: break-all;
+      }
+
+      .qr__logo {
+        width: 44mm;
+        height: auto;
+        margin-inline-start: auto;
+      }
+
+      .footnote {
+        margin: 4mm 0 0;
+        font-size: 3.4mm;
+        color: #60708e;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .hint {
+          display: none;
+        }
+
+        .sheet {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="hint">Print at A4, 100% scale, background graphics on. Cmd+P.</p>
+
+    <div class="sheet">
+      <div class="sky">
+        {{ $stars := slice
+          (dict "file" "star-white.svg" "top" "10mm" "left" "12mm" "size" "7mm")
+          (dict "file" "star-lavender.svg" "top" "56mm" "left" "34mm" "size" "4.5mm")
+          (dict "file" "star-deep-pink.svg" "top" "70mm" "left" "18mm" "size" "4mm")
+          (dict "file" "star-peachy-pink.svg" "top" "62mm" "left" "168mm" "size" "5.5mm")
+          (dict "file" "star-white.svg" "top" "8mm" "left" "182mm" "size" "6mm")
+          (dict "file" "star-moon-blue.svg" "top" "44mm" "left" "192mm" "size" "3.5mm")
+        }}
+        {{ range $star := $stars }}
+          {{ with resources.Get (printf "img/stars/%s" $star.file) }}
+            <img
+              class="sky__star"
+              src="{{ .RelPermalink }}"
+              alt=""
+              style="{{ printf "top:%s;left:%s;width:%s" $star.top $star.left $star.size | safeCSS }}" />
+          {{ end }}
+        {{ end }}
+
+        {{ with .Params.posterEyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+        <h1 class="title">{{ .Params.posterTitle | default .Title }}</h1>
+        {{ with .Params.posterTagline }}<p class="tagline">{{ . | markdownify }}</p>{{ end }}
+
+        {{ with resources.Get "img/moon-landscape.png" }}
+          <div
+            class="landscape"
+            style="{{ printf "background-image:url('%s')" .RelPermalink | safeCSS }}">
+            {{ with resources.Get "img/shield-guy.png" }}
+              <img class="mascot mascot--shield" src="{{ .RelPermalink }}" alt="" />
+            {{ end }}
+            {{ with resources.Get "img/buggy.svg" }}
+              <img class="mascot mascot--buggy" src="{{ .RelPermalink }}" alt="" />
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+
+      <div class="details">
+        {{ with .Params.posterDate }}<p class="when">{{ . }}</p>{{ end }}
+        {{ with .Params.posterTime }}<p class="time">{{ . }}</p>{{ end }}
+        {{ with .Params.posterMeta }}<p class="meta">{{ . }}</p>{{ end }}
+
+        <div class="blurb">{{ .Content }}</div>
+
+        {{ with .Params.posterNotice }}<p class="notice">{{ . | markdownify }}</p>{{ end }}
+
+        <div class="qr">
+          {{ with resources.Get "img/qr.svg" }}
+            <img class="qr__code" src="{{ .RelPermalink }}" alt="QR code to the Moonhack page" />
+          {{ else }}
+            <div class="qr__slot">QR code<br />goes here</div>
+          {{ end }}
+          <div>
+            {{ with .Params.qrCaption }}<p class="qr__caption">{{ . }}</p>{{ end }}
+            {{ with .Params.qrLabel }}<p class="qr__url">{{ . }}</p>{{ end }}
+          </div>
+          {{ with resources.Get "img/moonhack-logo.png" }}
+            <img class="qr__logo" src="{{ .RelPermalink }}" alt="Moonhack 2026" />
+          {{ end }}
+        </div>
+
+        {{ with .Params.posterFootnote }}<p class="footnote">{{ . | markdownify }}</p>{{ end }}
+      </div>
+    </div>
+  </body>
+</html>

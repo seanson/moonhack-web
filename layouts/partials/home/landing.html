@@ -15,7 +15,7 @@
   {{ $daysToGo = int (math.Floor (div (float (sub $start.Unix now.Unix)) 86400)) }}
 {{ end }}
 {{ $liveMessage := .Params.heroLiveMessage | default "Moonhack is happening right now" }}
-{{ $doneMessage := .Params.heroDoneMessage | default "That's a wrap — resources are below" }}
+{{ $doneMessage := .Params.heroDoneMessage | default "That's a wrap. Resources are below." }}
 
 {{ $stars := slice
   (dict "file" "star-white.svg" "top" "9%" "left" "7%" "size" "1.5rem" "delay" "0s")
@@ -117,9 +117,8 @@
     </a>
   {{ end }}
   <p>
-    Moonhack is Code Club Australia's global coding challenge. The 2026 challenge
-    runs <strong>14&ndash;31 October</strong> &mdash; our club day is one of those
-    days.
+    Moonhack is a Code Club Australia project. The 2026 challenge is open from
+    <strong>14 to 31 October</strong>. We're taking our turn on the 18th.
   </p>
 </div>
 

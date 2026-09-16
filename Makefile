@@ -1,4 +1,4 @@
-.PHONY: help init web build preview screenshot clean
+.PHONY: help init web build preview screenshot poster qr clean
 
 .DEFAULT_GOAL := help
 
@@ -24,6 +24,12 @@ preview: build ## Build, then serve public/ as static files (what GitHub Pages w
 
 screenshot: ## Screenshot pages from the dev server (e.g. PATHS="/ /posts/moonhack-2025/")
 	bash scripts/dev_screenshot.sh $(PATHS)
+
+poster: ## Render /poster/ to an A4 PDF in .work/data/ (override with OUT=path.pdf)
+	bash scripts/make_poster.sh $(OUT)
+
+qr: ## Regenerate the poster QR code (override with URL=https://...)
+	uv run scripts/make_qr.py $(if $(URL),--url $(URL),)
 
 clean: ## Remove build output and the Hugo resource cache
 	rm -rf public resources/_gen .hugo_build.lock

@@ -337,3 +337,21 @@
 .mh-body h2 {
   scroll-margin-top: 6rem;
 }
+
+/* Markdown task lists read as a checklist: checkbox, no bullet. */
+.mh-body ul:has(input[type="checkbox"]) {
+  padding-inline-start: 0.35rem;
+  list-style: none;
+}
+
+.mh-body ul li:has(input[type="checkbox"]) {
+  list-style: none;
+}
+
+.mh-body li input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-inline-end: 0.6rem;
+  vertical-align: -0.15rem;
+  accent-color: rgb(var(--color-primary-600));
+}
