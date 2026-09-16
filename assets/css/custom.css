@@ -10,6 +10,67 @@
  *   deep pink #F4167A, earth blue #286CFF, lavender #B2ACFF, taro #F5DDFC.
  */
 
+/* Register CTA above the hero: disabled until registerUrl is set. */
+.mh-register {
+  display: flex;
+  justify-content: center;
+  /* Pulls up into the header spacing above the hero. */
+  margin: -4.5rem auto 1.25rem;
+}
+
+.mh-register__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgb(var(--color-neutral-300));
+  border-radius: 1rem;
+  background: rgb(var(--color-neutral-200));
+  padding: 1rem 2.25rem;
+  color: rgb(var(--color-neutral-500));
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  cursor: not-allowed;
+}
+
+.mh-register__badge {
+  border-radius: 9999px;
+  background: rgb(var(--color-neutral-300));
+  padding: 0.25rem 0.7rem;
+  color: rgb(var(--color-neutral-600));
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dark .mh-register__button {
+  border-color: rgb(var(--color-neutral-700));
+  background: rgb(var(--color-neutral-800));
+  color: rgb(var(--color-neutral-400));
+}
+
+.dark .mh-register__badge {
+  background: rgb(var(--color-neutral-700));
+  color: rgb(var(--color-neutral-300));
+}
+
+.mh-register__button--live {
+  border-color: transparent;
+  background: rgb(var(--color-primary-600));
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.mh-register__button--live:hover {
+  transform: translateY(-2px);
+  background: rgb(var(--color-primary-500));
+}
+
 .mh-hero {
   --mh-ink: #f7f2ff;
   --mh-ink-dim: #c6bdf0;

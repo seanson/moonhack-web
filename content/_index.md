@@ -41,7 +41,7 @@ heroDoneMessage = "Our day is done. Projects stay open until 31 October."
 {{< /stats >}}
 
 {{< alert icon="bell" >}}
-Places are limited, so please register to book a spot. Details go up here and get sent to parents once registration opens.
+Places are limited, so please register to book a spot.
 {{< /alert >}}
 
 ## This year's theme: online safety

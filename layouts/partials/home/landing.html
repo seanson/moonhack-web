@@ -28,6 +28,21 @@
   (dict "file" "star-moon-blue.svg" "top" "40%" "left" "78%" "size" "0.7rem" "delay" "1.1s")
 }}
 
+{{/* Register CTA above the hero. Set registerUrl in front matter to make it live. */}}
+{{ $registerLabel := .Params.registerLabel | default "Register" }}
+<div class="mh-register">
+  {{ with .Params.registerUrl }}
+    <a class="mh-register__button mh-register__button--live" href="{{ . | safeURL }}">
+      {{ $registerLabel }}
+    </a>
+  {{ else }}
+    <button class="mh-register__button" type="button" disabled>
+      {{ $registerLabel }}
+      <span class="mh-register__badge">Coming soon</span>
+    </button>
+  {{ end }}
+</div>
+
 <article class="mh-hero">
   <div class="mh-hero__stars" aria-hidden="true"></div>
   <div class="mh-hero__glow" aria-hidden="true"></div>
@@ -36,7 +51,7 @@
     {{ range $star := $stars }}
       {{ with resources.Get (printf "img/stars/%s" $star.file) }}
         <img
-          class="mh-star"
+          class="mh-star nozoom"
           src="{{ .RelPermalink }}"
           alt=""
           width="25"
@@ -101,10 +116,10 @@
       aria-hidden="true"
       style="{{ printf "background-image:url('%s')" .RelPermalink | safeCSS }}">
       {{ with resources.Get "img/shield-guy.png" }}
-        <img class="mh-mascot mh-mascot--shield" src="{{ .RelPermalink }}" alt="" />
+        <img class="mh-mascot mh-mascot--shield nozoom" src="{{ .RelPermalink }}" alt="" />
       {{ end }}
       {{ with resources.Get "img/buggy.svg" }}
-        <img class="mh-mascot mh-mascot--buggy" src="{{ .RelPermalink }}" alt="" />
+        <img class="mh-mascot mh-mascot--buggy nozoom" src="{{ .RelPermalink }}" alt="" />
       {{ end }}
     </div>
   {{ end }}
@@ -113,7 +128,7 @@
 <div class="mh-presented">
   {{ with resources.Get "img/moonhack-logo.png" }}
     <a href="https://moonhack.com" rel="noopener">
-      <img class="mh-presented__logo" src="{{ .RelPermalink }}" alt="Moonhack 2026" />
+      <img class="mh-presented__logo nozoom" src="{{ .RelPermalink }}" alt="Moonhack 2026" />
     </a>
   {{ end }}
   <p>
