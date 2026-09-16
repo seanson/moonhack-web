@@ -86,26 +86,47 @@ Worth doing beforehand: [open a Scratch account](https://scratch.mit.edu/join) a
 ## The seven projects
 
 {{< feature-grid columns="4" >}}
-{{< feature icon="eye" title="Priva-See Detective" headingLevel="h3" >}}
-What's safe to put in a photo you share? Find what shouldn't be in shot. **Scratch, beginner.**
+{{< feature icon="eye" title="Priva-See Detective" url="https://www.codeclubau.org/projects/priva-see-detective" label="Get started" headingLevel="h3" >}}
+**Language:** Scratch  
+**Skill:** Beginner
+
+A quick game about what counts as identifying information in a photo.
 {{< /feature >}}
-{{< feature icon="shield" title="Cyber Safety Mission" headingLevel="h3" >}}
-A quiz on safe choices online: names, addresses, meeting up in real life, and more. **Scratch, beginner to intermediate.**
+{{< feature icon="bug" title="Whack the Hack" url="https://www.codeclubau.org/projects/whack-the-hack/" label="Get started" headingLevel="h3" >}}
+**Language:** Scratch  
+**Skill:** Intermediate
+
+Whack-a-mole, cyber security edition.
 {{< /feature >}}
-{{< feature icon="bug" title="Whack the Hack" headingLevel="h3" >}}
-Whack-a-mole, except you only hit the safe downloads. Clones, variables and a timer. **Scratch, mid to advanced.**
+{{< feature icon="shield" title="Cyber Smart Mission" url="https://www.codeclubau.org/projects/cyber-smart-mission" label="Get started" headingLevel="h3" >}}
+**Language:** Scratch  
+**Skill:** Beginner
+
+Build a quiz that walks other people through tricky online choices.
 {{< /feature >}}
-{{< feature icon="globe" title="Safe Site Sprint" headingLevel="h3" >}}
-A platformer where you collect only the safe websites. Custom blocks and sensing. **Scratch, mid to advanced.**
+{{< feature icon="download" title="Safe Sprite Sprint" url="https://www.codeclubau.org/projects/safe-sprite-sprint/" label="Get started" headingLevel="h3" >}}
+**Language:** Scratch  
+**Skill:** Advanced
+
+A platformer about which downloads are safe and which are not.
 {{< /feature >}}
-{{< feature icon="lock" title="Identity Guard" headingLevel="h3" >}}
-Two micro:bits shake hands, encrypted, to prove who they are. **micro:bit, beginner.**
+{{< feature icon="lock" title="Identity Guard" url="https://www.codeclubau.org/projects/identity-guard" label="Get started" headingLevel="h3" >}}
+**Language:** micro:bit  
+**Skill:** Beginner
+
+Two micro:bits run an encrypted handshake, the way websites check who they are talking to.
 {{< /feature >}}
-{{< feature icon="search" title="Phishy Finder" headingLevel="h3" >}}
-Read a URL closely enough and the phishy ones give themselves away. Lists, dictionaries, scoring. **Python.**
+{{< feature icon="wand-magic-sparkles" title="Profile Protector" url="https://www.codeclubau.org/projects/profile-protector" label="Get started" headingLevel="h3" >}}
+**Language:** Teachable Machine  
+**Skill:** Beginner
+
+Train a machine learning model to tell an avatar from a real photo.
 {{< /feature >}}
-{{< feature icon="wand-magic-sparkles" title="AI: avatar or photo?" headingLevel="h3" >}}
-Train a model to tell an avatar from a real photo, then work out why the avatar is the safer thing to post. **Teachable Machine, all levels.**
+{{< feature icon="search" title="Phishy Finder" url="https://www.codeclubau.org/projects/phishy-finder/" label="Get started" headingLevel="h3" >}}
+**Language:** Python  
+**Skill:** Intermediate
+
+A game that teaches other people how to spot a fake website.
 {{< /feature >}}
 {{< /feature-grid >}}
 
@@ -115,6 +136,6 @@ We submit the day's projects as a group, so there's nothing for anyone to do ind
 
 {{< stats columns="3" >}}
 {{< stat value="12" label="LEGO Science & AI kits" >}}Split across the four age categories.{{< /stat >}}
-{{< stat value="6" label="micro:bit Go + Kitronik console" >}}Code Club swag for entrants too.{{< /stat >}}
+{{< stat value="6" label="micro:bit Go + Kitronik console" >}}{{< /stat >}}
 {{< stat value="14 Nov" label="Submissions close" >}}Winners announced on 20 November.{{< /stat >}}
 {{< /stats >}}

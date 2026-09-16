@@ -338,6 +338,22 @@
   scroll-margin-top: 6rem;
 }
 
+/* Feature cards are not-prose, so paragraphs need their own spacing. */
+.mh-body article p + p {
+  margin-top: 0.5rem;
+}
+
+/* Card body text sits a shade lighter than the theme default, and the
+   Language/Skill labels use semibold so they don't dominate the card. */
+.mh-body article p {
+  color: rgb(var(--color-neutral-500));
+}
+
+.mh-body article p strong {
+  font-weight: 600;
+  color: inherit;
+}
+
 /* Markdown task lists read as a checklist: checkbox, no bullet. */
 .mh-body ul:has(input[type="checkbox"]) {
   padding-inline-start: 0.35rem;
