@@ -2,6 +2,7 @@
 title = "Moonhack 2026"
 description = "1st Kings Langley Scouts are doing Moonhack 2026 on Sunday 18 October, 10am to 3pm at the Kings Langley Scout Hall. Seven online safety coding projects for ages 9 to 14."
 heroCaption = "1st Kings Langley Scouts"
+registerUrl = "https://events.nsw.scouts.com.au/event/3834"
 heroLead = "Code Club Australia's global coding challenge runs in October, and this year it's about online safety. We're doing ours at the hall on **Sunday 18 October, 10am to 3pm**. Seven new projects, four ways to code them."
 eventStart = "2026-10-18T10:00:00+11:00"
 eventEnd = "2026-10-18T15:00:00+11:00"
@@ -39,10 +40,6 @@ heroDoneMessage = "Our day is done. Projects stay open until 31 October."
 {{< stat value="14 - 31 Oct" label="The global challenge window" >}}We're coding on Sunday 18 October. The rest of the window is there if anyone wants another go at home.{{< /stat >}}
 {{< stat value="11th year" label="300,000 kids and counting" >}}That's how many have taken part since the first Moonhack in 2016.{{< /stat >}}
 {{< /stats >}}
-
-{{< alert icon="bell" >}}
-Places are limited, so please register to book a spot.
-{{< /alert >}}
 
 ## This year's theme: online safety
 
