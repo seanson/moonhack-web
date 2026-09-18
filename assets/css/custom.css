@@ -57,7 +57,8 @@
 
 .mh-register__button--live {
   border-color: transparent;
-  background: rgb(var(--color-primary-600));
+  background: rgb(var(--color-secondary-500));
+  box-shadow: 0 12px 28px -12px rgb(var(--color-secondary-500) / 70%);
   color: #fff;
   text-decoration: none;
   cursor: pointer;
@@ -68,7 +69,19 @@
 
 .mh-register__button--live:hover {
   transform: translateY(-2px);
+  background: rgb(var(--color-secondary-400));
+}
+
+/* Beats the .dark .mh-register__button greyed-out rule above. */
+.dark .mh-register__button--live {
+  border-color: transparent;
   background: rgb(var(--color-primary-500));
+  box-shadow: 0 12px 28px -12px rgb(var(--color-primary-500) / 60%);
+  color: #131a35;
+}
+
+.dark .mh-register__button--live:hover {
+  background: rgb(var(--color-primary-400));
 }
 
 .mh-hero {

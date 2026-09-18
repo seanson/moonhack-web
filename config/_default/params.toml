@@ -2,7 +2,7 @@ colorScheme = "nsw"
 defaultAppearance = "light" # valid options: light or dark
 autoSwitchAppearance = true
 
-enableSearch = true
+enableSearch = false
 enableCodeCopy = true
 
 fingerprintAlgorithm = "sha512"

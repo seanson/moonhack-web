@@ -16,7 +16,7 @@ buildFuture = false
   category = "categories"
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS"]
 
 [sitemap]
   changefreq = 'weekly'
