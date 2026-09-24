@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode | default "en" }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>{{ .Title }}</title>
+    {{/*
+      Source for the social card image. Rendered at exactly 1200x630 and
+      screenshotted by scripts/make_og.sh into static/. Not linked from the
+      site; it exists so the card can be rebuilt when the art or date changes.
+    */}}
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #131a35;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        width: 1200px;
+        height: 630px;
+        padding: 56px 64px 0;
+        color: #fff;
+        text-align: center;
+        background: linear-gradient(180deg, #131a35 0%, #24135a 48%, #391486 100%);
+      }
+
+      .star {
+        position: absolute;
+        height: auto;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #b2acff;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      .title {
+        margin: 22px 0 0;
+        font-size: 116px;
+        font-weight: 900;
+        line-height: 0.94;
+        letter-spacing: -0.03em;
+      }
+
+      .tagline {
+        margin: 24px auto 0;
+        max-width: 860px;
+        color: #ded8ff;
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .facts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin: 30px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .facts li {
+        border: 1px solid rgb(255 255 255 / 18%);
+        border-radius: 999px;
+        background: rgb(255 255 255 / 9%);
+        padding: 10px 22px;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .landscape {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        aspect-ratio: 4320 / 620;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+      }
+
+      .mascot {
+        position: absolute;
+        height: auto;
+      }
+
+      .mascot--buggy {
+        left: 66%;
+        bottom: 62%;
+        width: 150px;
+      }
+
+      .mascot--shield {
+        left: 6%;
+        bottom: 60%;
+        width: 96px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      {{ $stars := slice
+        (dict "file" "star-white.svg" "top" "44px" "left" "70px" "size" "36px")
+        (dict "file" "star-lavender.svg" "top" "150px" "left" "150px" "size" "22px")
+        (dict "file" "star-deep-pink.svg" "top" "300px" "left" "92px" "size" "20px")
+        (dict "file" "star-peachy-pink.svg" "top" "120px" "left" "1010px" "size" "26px")
+        (dict "file" "star-white.svg" "top" "40px" "left" "1096px" "size" "30px")
+        (dict "file" "star-moon-blue.svg" "top" "252px" "left" "1120px" "size" "18px")
+      }}
+      {{ range $star := $stars }}
+        {{ with resources.Get (printf "img/stars/%s" $star.file) }}
+          <img
+            class="star"
+            src="{{ .RelPermalink }}"
+            alt=""
+            style="{{ printf "top:%s;left:%s;width:%s" $star.top $star.left $star.size | safeCSS }}" />
+        {{ end }}
+      {{ end }}
+
+      {{ with .Params.ogEyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+      <h1 class="title">{{ .Params.ogTitle | default .Title }}</h1>
+      {{ with .Params.ogTagline }}<p class="tagline">{{ . }}</p>{{ end }}
+
+      {{ with .Params.ogFacts }}
+        <ul class="facts">
+          {{ range . }}<li>{{ . }}</li>{{ end }}
+        </ul>
+      {{ end }}
+
+      {{ with resources.Get "img/moon-landscape.png" }}
+        <div
+          class="landscape"
+          style="{{ printf "background-image:url('%s')" .RelPermalink | safeCSS }}">
+          {{ with resources.Get "img/shield-guy.png" }}
+            <img class="mascot mascot--shield" src="{{ .RelPermalink }}" alt="" />
+          {{ end }}
+          {{ with resources.Get "img/buggy.svg" }}
+            <img class="mascot mascot--buggy" src="{{ .RelPermalink }}" alt="" />
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </body>
+</html>

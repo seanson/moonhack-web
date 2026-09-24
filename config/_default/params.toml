@@ -1,4 +1,5 @@
 colorScheme = "nsw"
+images = ["/og-moonhack-2026.png"]
 defaultAppearance = "light" # valid options: light or dark
 autoSwitchAppearance = true
 

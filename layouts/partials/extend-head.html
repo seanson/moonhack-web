@@ -1,0 +1,13 @@
+{{/*
+  Social card extras. Hugo's internal opengraph template emits og:image from
+  site.Params.images but not its dimensions or alt text, which some scrapers
+  (Facebook, LinkedIn) use to render the card before fetching the file.
+*/}}
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta
+  property="og:image:alt"
+  content="Moonhack 2026 with 1st Kings Langley Scouts, Sunday 18 October, 10am to 3pm" />
+<meta
+  name="twitter:image:alt"
+  content="Moonhack 2026 with 1st Kings Langley Scouts, Sunday 18 October, 10am to 3pm" />

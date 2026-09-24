@@ -1,4 +1,4 @@
-.PHONY: help init web build preview screenshot poster qr clean
+.PHONY: help init web build preview screenshot poster og qr clean
 
 .DEFAULT_GOAL := help
 
@@ -27,6 +27,9 @@ screenshot: ## Screenshot pages from the dev server (e.g. PATHS="/ /posts/moonha
 
 poster: ## Render /poster/ to an A4 PDF in .work/data/ (override with OUT=path.pdf)
 	bash scripts/make_poster.sh $(OUT)
+
+og: ## Render the 1200x630 social card to static/og-moonhack-2026.png
+	bash scripts/make_og.sh $(OUT)
 
 qr: ## Regenerate the poster QR code (override with URL=https://...)
 	uv run scripts/make_qr.py $(if $(URL),--url $(URL),)
