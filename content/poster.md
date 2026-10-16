@@ -22,4 +22,4 @@ posterFootnote = "Moonhack is a Code Club Australia project."
 
 **Where:** 1st Kings Langley Scout Hall
 
-**Bring:** Scout uniform, laptop and charger, nut free lunch, water bottle, hat and enclosed shoes
+**Bring:** Scout uniform with scarf, laptop and charger, nut free lunch, water bottle, hat and enclosed shoes

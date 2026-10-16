@@ -73,7 +73,7 @@ Parents arrive at 2:45pm to see what everyone made. We pack up and leave at 3pm.
 
 ### Bring with you
 
-- [ ] Scout uniform
+- [ ] Scout uniform with scarf
 - [ ] Laptop or Chromebook and charger
 - [ ] Lunch and snacks, nut free please
 - [ ] Water bottle, hat and enclosed shoes
