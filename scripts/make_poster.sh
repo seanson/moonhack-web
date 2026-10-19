@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-# Render /poster/ to an A4 PDF with headless Chrome.
+# Render a print page to an A4 PDF with headless Chrome.
 #
-# Usage: bash scripts/make_poster.sh [out.pdf]
+# Usage: bash scripts/make_poster.sh [out.pdf] [page-path]
+#        defaults: .work/data/moonhack-2026-poster-a4.pdf  /poster/
 # Env:   PORT (default 1415, kept off the dev server's port), CHROME
 set -euo pipefail
 
 PORT="${PORT:-1415}"
 OUT="${1:-.work/data/moonhack-2026-poster-a4.pdf}"
+PAGE="${2:-/poster/}"
 CHROME="${CHROME:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
-URL="http://127.0.0.1:${PORT}/poster/"
+URL="http://127.0.0.1:${PORT}${PAGE}"
 
 if [[ ! -x "$CHROME" ]]; then
   echo "Chrome not found at: $CHROME (override with CHROME=/path/to/chrome)" >&2

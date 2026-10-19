@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode | default "en" }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{{ .Title }}</title>
+    {{/*
+      Standalone A4 landscape sign in/out sheet. Same approach as poster.html:
+      no site chrome, sized in mm so print output matches the screen.
+      Row count comes from signinRows in front matter.
+    */}}
+    <style>
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: #131a35;
+        background: #e9eaf0;
+      }
+
+      .hint {
+        padding: 6mm;
+        text-align: center;
+        font-size: 3.4mm;
+        color: #46506e;
+      }
+
+      .sheet {
+        position: relative;
+        margin: 0 auto;
+        width: 297mm;
+        height: 210mm;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4mm 12mm rgb(19 26 53 / 25%);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .sky {
+        position: relative;
+        flex: none;
+        height: 44mm;
+        padding: 7mm 12mm 0;
+        color: #fff;
+        background: linear-gradient(180deg, #131a35 0%, #24135a 55%, #391486 100%);
+      }
+
+      .sky__star {
+        position: absolute;
+        height: auto;
+      }
+
+      .eyebrow {
+        margin: 0;
+        font-size: 3.4mm;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #b2acff;
+      }
+
+      .title {
+        margin: 1.5mm 0 0;
+        font-size: 13mm;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+
+      .title span {
+        color: #ff8d8d;
+      }
+
+      .details {
+        margin: 2mm 0 0;
+        font-size: 4.2mm;
+        font-weight: 600;
+        color: #ded8ff;
+      }
+
+      .landscape {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        height: 13mm;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+      }
+
+      .mascot {
+        position: absolute;
+        height: auto;
+      }
+
+      .mascot--buggy {
+        right: 14mm;
+        bottom: 6mm;
+        width: 26mm;
+      }
+
+      .mascot--shield {
+        right: 48mm;
+        bottom: 5mm;
+        width: 17mm;
+      }
+
+      .body {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 5mm 12mm 6mm;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        border: 0.3mm solid #b8bdd0;
+        padding: 0 2mm;
+      }
+
+      th {
+        height: 8mm;
+        background: #f5ddfc;
+        font-size: 3.2mm;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-align: left;
+        text-transform: uppercase;
+        color: #391486;
+      }
+
+      td {
+        height: 8.4mm;
+      }
+
+      tbody tr:nth-child(even) td {
+        background: #faf6fd;
+      }
+
+      .num {
+        width: 9mm;
+        text-align: center;
+        font-size: 3mm;
+        font-weight: 700;
+        color: #8a91ab;
+      }
+
+      .col-name { width: 52mm; }
+      .col-in { width: 22mm; }
+      .col-sig { width: 52mm; }
+      .col-out { width: 22mm; }
+      .col-by { width: 52mm; }
+
+      .foot {
+        flex: none;
+        display: flex;
+        justify-content: space-between;
+        margin: 3mm 0 0;
+        font-size: 3.1mm;
+        color: #60708e;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .hint {
+          display: none;
+        }
+
+        .sheet {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="hint">Print at A4 landscape, 100% scale, background graphics on. Cmd+P.</p>
+
+    <div class="sheet">
+      <div class="sky">
+        {{ $stars := slice
+          (dict "file" "star-white.svg" "top" "3mm" "left" "150mm" "size" "5mm")
+          (dict "file" "star-lavender.svg" "top" "26mm" "left" "196mm" "size" "4mm")
+          (dict "file" "star-peachy-pink.svg" "top" "3mm" "left" "232mm" "size" "4.5mm")
+          (dict "file" "star-white.svg" "top" "22mm" "left" "224mm" "size" "3.5mm")
+          (dict "file" "star-deep-pink.svg" "top" "4mm" "left" "272mm" "size" "3.5mm")
+        }}
+        {{ range $star := $stars }}
+          {{ with resources.Get (printf "img/stars/%s" $star.file) }}
+            <img
+              class="sky__star"
+              src="{{ .RelPermalink }}"
+              alt=""
+              style="{{ printf "top:%s;left:%s;width:%s" $star.top $star.left $star.size | safeCSS }}" />
+          {{ end }}
+        {{ end }}
+
+        {{ with .Params.signinEyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+        <h1 class="title">
+          {{ .Params.signinTitle | default .Title }}
+          {{ with .Params.signinSubtitle }}<span>{{ . }}</span>{{ end }}
+        </h1>
+        {{ with .Params.signinDetails }}<p class="details">{{ . }}</p>{{ end }}
+
+        {{ with resources.Get "img/moon-landscape.png" }}
+          <div
+            class="landscape"
+            style="{{ printf "background-image:url('%s')" .RelPermalink | safeCSS }}"></div>
+        {{ end }}
+        {{ with resources.Get "img/shield-guy.png" }}
+          <img class="mascot mascot--shield" src="{{ .RelPermalink }}" alt="" />
+        {{ end }}
+        {{ with resources.Get "img/buggy.svg" }}
+          <img class="mascot mascot--buggy" src="{{ .RelPermalink }}" alt="" />
+        {{ end }}
+      </div>
+
+      <div class="body">
+        <table>
+          <thead>
+            <tr>
+              <th class="num">#</th>
+              <th class="col-name">Name</th>
+              <th class="col-in">Time in</th>
+              <th class="col-sig">Parent or carer signature</th>
+              <th class="col-out">Time out</th>
+              <th class="col-by">Signed out by</th>
+              <th>Notes (allergies, medical)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range seq (.Params.signinRows | default 16) }}
+              <tr>
+                <td class="num">{{ . }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            {{ end }}
+          </tbody>
+        </table>
+        <p class="foot">
+          <span>Moonhack is a Code Club Australia project.</span>
+          <span>Scouts must be signed out by a parent or carer at pickup.</span>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
